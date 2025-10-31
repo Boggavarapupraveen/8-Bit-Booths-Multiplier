@@ -1,0 +1,112 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2021 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+Version: 20.11-s111_1, built Mon Apr 26 02:27:38 PDT 2021
+Options: 
+Date:    Thu Oct 30 16:15:52 2025
+Host:    vlsi-4.iiitk.ac.in (x86_64 w/Linux 3.10.0-1160.el7.x86_64) (6cores*12cpus*1physical cpu*Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz 12288KB) (16201468KB)
+PID:     18151
+OS:      Red Hat Enterprise Linux Server release 7.9 (Maipo)
+
+Checking out license: Genus_Synthesis
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...
+Finished loading tool scripts (6 seconds elapsed).
+
+WARNING: This version of the tool is 1648 days old.
+@genus:root: 1> source run.tcl
+Sourcing './run.tcl' (Thu Oct 30 16:16:03 IST 2025)...
+#@ Begin verbose source ./run.tcl
+@file(run.tcl) 2: set_db init_lib_search_path /home/install/FOUNDRY/digital/90nm/dig/lib/
+  Setting attribute of root '/': 'init_lib_search_path' = /home/install/FOUNDRY/digital/90nm/dig/lib/
+@file(run.tcl) 3: set_db library slow.lib     ;# Use your actual .lib file for 90nm, e.g., slow.lib
+
+Threads Configured:3
+
+  Message Summary for Library slow.lib:
+  *************************************
+  Missing a function attribute in the output pin definition. [LBR-518]: 1
+  Missing library level attribute. [LBR-516]: 1
+  *************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'slow.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+  Setting attribute of root '/': 'library' = slow.lib
+@file(run.tcl) 6: set_db init_hdl_search_path {./booths_multiplier.v}
+  Setting attribute of root '/': 'init_hdl_search_path' = ./booths_multiplier.v
+@file(run.tcl) 7: read_hdl booths_multiplier.v
+@file(run.tcl) 10: elaborate booths_multiplier
+  Library has 324 usable logic and 128 usable sequential lib-cells.
+Error   : Could not find an HDL design. [CDFG-210] [elaborate]
+        : The design is 'booths_multiplier'.
+        : This error may happen if you read a set of files, and you try to elaborate a design which description is not part of the files read. To fix this, check the name of the design you want to elaborate, or check if you have read all the expected RTL files.
+UM:   flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+#@ End verbose source ./run.tcl
+1
+@genus:root: 2> source run.tcl
+Sourcing './run.tcl' (Thu Oct 30 16:20:13 IST 2025)...
+#@ Begin verbose source ./run.tcl
+@file(run.tcl) 2: set_db init_lib_search_path /home/install/FOUNDRY/digital/90nm/dig/lib/
+Warning : Cannot modify library search path after reading library(s). [TUI-83]
+        : Cannot modify 'init_lib_search_path' attribute to '/home/install/FOUNDRY/digital/90nm/dig/lib/'
+        : You must set the 'init_lib_search_path' attribute before you set the 'library' attribute.
+  Setting attribute of root '/': 'init_lib_search_path' = /home/install/FOUNDRY/digital/90nm/dig/lib/
+@file(run.tcl) 3: set_db library slow.lib     ;# Use your actual .lib file for 90nm, e.g., slow.lib
+Freeing libraries in memory (slow.lib)
+
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'slow.lib'.
+  Setting attribute of root '/': 'library' = slow.lib
+@file(run.tcl) 6: set_db init_hdl_search_path {./booths_multiplier.v}
+  Setting attribute of root '/': 'init_hdl_search_path' = ./booths_multiplier.v
+@file(run.tcl) 7: read_hdl booths_multiplier.v
+module booth_multiplier (
+                      |
+Warning : Replacing previously read Verilog description. [VLOGPT-6]
+        : Replacing Verilog description 'booth_multiplier' with Verilog module in file './booths_multiplier.v' on line 1, column 23.
+        : A Verilog description is replaced when a new description of the same name and same library is read again.
+    Verilog descriptions are:
+       module
+       macromodule
+       configuration
+    SystemVerilog adds the following descriptions:
+       interface
+       program
+       package.
+module alu (
+         |
+Warning : Replacing previously read Verilog description. [VLOGPT-6]
+        : Replacing Verilog description 'alu' with Verilog module in file './booths_multiplier.v' on line 37, column 10.
+Warning : Replacing previously read Verilog module or VHDL entity. [HPT-76]
+        : Replacing Verilog module 'booth_multiplier' in library 'default' with newly read Verilog module 'booth_multiplier' in the same library in file './booths_multiplier.v' on line 1.
+        : A newly read VHDL entity replaces any previously read Verilog module or VHDL entity in the same library if its name matches (case-insensitively) the existing module or entity.
+    For instance:
+        VHDL 'foo'                  replaces  VHDL {'FOO' or 'foo' or 'Foo' or ...} in the same library
+        VHDL 'foo' (in any library) replaces  Verilog {'FOO' or 'foo' or 'Foo' or ...} in the same library
+ 
+A newly read Verilog module replaces any previously read Verilog module if its name matches (case-sensitively) that module.  Further, it replaces any previously read VHDL entity in the same library if its name matches (case -insensitively) that entity.
+    For instance:
+        Verilog 'foo' replaces    VHDL {'FOO' or 'foo' or 'Foo' or ...} in the same library
+        Verilog 'foo' replaces    Verilog 'foo' only
+    In addition:
+        Verilog 'foo' does not replace Verilog 'FOO' and the two remain as distinct modules.
+Warning : Replacing previously read Verilog module or VHDL entity. [HPT-76]
+        : Replacing Verilog module 'alu' in library 'default' with newly read Verilog module 'alu' in the same library in file './booths_multiplier.v' on line 37.
+@file(run.tcl) 10: elaborate booths_multiplier
+  Library has 324 usable logic and 128 usable sequential lib-cells.
+Error   : Could not find an HDL design. [CDFG-210] [elaborate]
+        : The design is 'booths_multiplier'.
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+#@ End verbose source ./run.tcl
+1

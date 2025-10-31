@@ -1,0 +1,20 @@
+ncsim(64): 15.20-s086: (c) Copyright 1995-2020 Cadence Design Systems, Inc.
+
+-------------------------------------
+Relinquished control to SimVision...
+ncsim> 
+ncsim> run
+Simulation stopped via $stop(1) at time 270 NS + 0
+ncsim> run
+Simulation interrupted at 4078146175 NS + 0
+ncsim> database -open waves -into waves.shm -default
+Created default SHM database waves
+ncsim> probe -create -shm tb_booth_multiplier.busy tb_booth_multiplier.clk tb_booth_multiplier.mc tb_booth_multiplier.mp tb_booth_multiplier.prod tb_booth_multiplier.start
+Created probe 1
+ncsim> run
+Simulation interrupted at 4215947120 NS + 0
+ncsim> ncsim: *W,NCTERM: Simulation received SIGTERM signal from process 1, user id 0 (/usr/lib/systemd/systemd).
+...Regained control from SimVision
+-------------------------------------
+ncsim: Memory Usage - 38.6M program + 190.4M data = 229.0M total (1031.3M Peak)
+ncsim: CPU Usage - 36.3s system + 62.0s user = 98.3s total (6094.6s, 1.6% cpu)
