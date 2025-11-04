@@ -10,9 +10,9 @@
 # 📝📝⚙️Procedure:-  1. Write Verilog code for Booth’s Multiplier.
 ##                      2. Write a testbench and verify the output using simulation.
  ##                     3. Apply timing constraints using .sdc.
-  ##                    4. SynthesizethecircuitusingCadenceGenus.
-   ##                   5. Importsynthesizednetlist intoCadenceInnovus.
-   ##                 6. Performfloorplanning,placement,CTS, routing,andsignoffchecks
+  ##                    4. Synthesize the circuit using Cadence Genus.
+   ##                   5. Import synthesized netlist into Cadence Innovus.
+   ##                 6. Perform floorplanning,placement,CTS, routing,and sign off checks
  # INTRODUCTION:-
 ##  • Booth’s algorithm helps multiply signed binary numbers using fewer addition and
  subtraction steps.
