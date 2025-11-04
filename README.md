@@ -1,4 +1,6 @@
 # 8-Bit-Booths-Multiplier
-Implementation of 8-bit Booth’s Multiplier  using Semi-Custom VLSI Design Flow
+# AIM:-Implementation of 8-bit Booth’s Multiplier  using Semi-Custom VLSI Design Flow
+# Aparatus:- Using Cadance
+
 
 
