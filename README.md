@@ -63,6 +63,150 @@ braries.
 ## –Arithmetic shifters: These shift bits left orr right,which is part of them ultiplication process.
 # Timing Report:-
 ![WhatsApp Image 2025-10-30 at 17 13 28_31b68896](https://github.com/user-attachments/assets/e5d63a4e-259e-4d8d-9896-38ba4c595f1e)
+##  Explanation:-
+###  The timing report shows how well thec ircuit meets its timing goals. It includes
+###  –Set up time:The minimum time input signals must be stable before the clock.–
+### Hold time:The minimum time input signals must stay stable after the clock.–
+### Slack:The extra time available beyond what’sneeded.
+###  If the slack is positive, it means the design works on time and can run safely at the chosen clock speed with out errors. This means the circuit is reliable
+### and runs fastenough.
+# Power and Area Report:-
+![WhatsApp Image 2025-10-30 at 17 13 29_244ad4a0](https://github.com/user-attachments/assets/a535c4a9-b68c-4914-b63a-05f645b8471d)
+##  Explanation: The report displays total power consumption, leakage power, and
+## silicon area used. Booth’s algorithm reduces switching activity, improving power
+## efficiency while maintaining acceptable area utilization.
+#  Placed Layout:-
+![WhatsApp Image 2025-10-30 at 17 13 29_fcb86368](https://github.com/user-attachments/assets/8dcf4242-8a8a-4d4a-9016-f83226432ebd)
+##  Explanation:This placement step arranges the standard cells to minimize routing
+## complexity and reduce wire delay. Proper placement ensures better performance
+## and lower power
+# Routed Layout:-
+![WhatsApp Image 2025-10-30 at 17 13 29_2cf3ca52](https://github.com/user-attachments/assets/3df2c83b-2477-4305-bcae-fc7429250352)
+##  Explanation: The routed layout completes the signal connections using multilayer interconnects.
+This steps ensures that all timing ande electrical constraints are  satisfied
+# VERILOG CODE:-
+ <module booth_multiplier (
+ output reg [15:0] prod,
+ output reg busy,
+ input [7:0] mc, mp,
+ input clk, start
+ );
+ reg [7:0] A, Q, M;
+ reg Q_1;
+ reg [3:0] count;
+ wire [7:0] sum, diff;
+ always @(posedge clk) begin
+ if (start) begin
+ A <= 8’b0;
+ 8
+M <= mc;
+ Q <= mp;
+ Q_1 <= 1’b0;
+ count <= 4’b0;
+ busy <= 1’b1;
+ end else if (busy) begin
+ case ({Q[0], Q_1})
+ 2’b01 : {A, Q, Q_1} <= {sum[7], sum, Q};
+ // Add
+ 2’b10 : {A, Q, Q_1} <= {diff[7], diff, Q};
+ // Subtract
+ default : {A, Q, Q_1} <= {A[7], A, Q};
+ // Shift only
+ endcase
+ count <= count + 1’b1;
+ if (count == 4’d8)
+ busy <= 1’b0;
+ end
+ prod <= {A, Q};
+ end
+ alu add1 (sum, A, M, 1’b0);
+ alu sub1 (diff, A, ~M, 1’b1);
+ endmodule
+ module alu (
+ output [7:0] out,
+ input [7:0] a, b,
+ input cin
+ );
+ assign out = a + b + cin;
+ endmodule
+ >
+# TEST BENCH CODE :-
+ <module tb_booth_multiplier();
+ reg [7:0] mc, mp;
+ reg clk, start;
+ wire [15:0] prod;
+ wire busy;
+ booth_multiplier uut (.prod(prod), .busy(busy), .mc(mc),
+ .mp(mp), .clk(clk), .start(start));
+ initial begin
+ clk = 0;
+ forever #5 clk = ~clk;
+ end
+ 9
+initial begin
+ // Test Case 1
+ mc = 8’d4; mp = 8’d3; start = 1; #10; start = 0;
+ #80;
+ // Test Case 2
+ mc = 8’d15; mp = 8’d7; start = 1; #10; start = 0;
+ #80;
+ // Test Case 3 (Negative values)
+ mc =-8’d4; mp =-8’d3; start = 1; #10; start = 0;
+ #80;
+ $stop;
+ end
+ endmodule
+ >
+# INPUT_CONSTRAINTS,SDC CODE:-
+ <# Set clock period to 10ns (100MHz)
+ create_clock-name clk-period 10 [get_ports clk]
+ # Input/output delay for primary inputs/outputs
+ set_input_delay 2 [get_ports mc]
+ set_input_delay 2 [get_ports mp]
+ set_output_delay 2 [get_ports prod]
+ # Set drive strength and load (optional, example values)
+ set_drive 4 [get_ports mc]
+ set_load 10 [get_ports prod]
+ >
+# RUN,TCL CODE :-
+ <# Set up working directories
+ file mkdir netlist
+ file mkdir logs
+ # Read Verilog sources
+ read_verilog booth_multiplier.v
+ read_verilog tb_booth_multiplier.v
+ # Set top module for synthesis
+ set TOP booth_multiplier
+ # Run synthesis
+ synth_design-top $TOP
+ 10
+# Write synthesized netlist
+ write_verilog netlist/${TOP}_netlist.v
+ # Save reports
+ report_timing > logs/${TOP}_timing.rpt
+ report_area > logs/${TOP}_area.rpt
+ report_power > logs/${TOP}_power.rpt
+ # Simulate (optional, tool-dependent)
+ run_simulation tb_booth_multiplier.v
+ exit
+ # 3D VIEW :-
+ ![WhatsApp Image 2025-10-30 at 17 13 30_2c0220ad](https://github.com/user-attachments/assets/f9f312a7-bc2a-4acb-9e6e-3205f2d725ce)
+ ##  Explanation: The 3D visualization shows multiple metal layers and vias. This
+## verifies that the physical implementation follows DRC/LVS rules and is fabrication ready
+ #  Result:-
+ ## The 8-bit Booth’s multiplier was successfully designed and implemented.Functional
+ ## simulation,synthesis,place and route operations were completed.The circuit meets
+ ## timing,area,and power constraints.
+# CONCLYSION:-
+## Booth’s algorithm is an efficient technique for signed multiplication. Using a semi
+## custom VLSI design flow, the design was successfully taken from behavioral Verilog
+## description to a physical layout suitable for fabrication. The experiment demonstrates the complete hardware realization process from RTL to GDSII generation
+
+
+
+
+
+
 
 
 
