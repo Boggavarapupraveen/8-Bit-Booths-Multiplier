@@ -49,21 +49,22 @@ braries.
  ## Reduces hardware complexit
 #  SimulationWaveform:-
 ![img jpg](https://github.com/user-attachments/assets/53cc7a7e-235b-4cb5-8403-579b5bde195f)
-##  Explanation: ThewaveformshowsthattheBoothmultiplierisworkingcorrectly. Whenyougive inputs(multiplicandandmultiplier), theoutputproductbecomes
- stableafter themultiplierdoesaseriesofadding, subtracting, andshiftingsteps
- onebyone.ThismeanstheVerilogcoderunstheBoothalgorithmproperlybefore
- thefinalchipdesignprocess(synthesis)
+##  Explanation: The waveform shows that the Boothmultiplier is working correctly. When you give inputs(multipli candand multiplier), the output product becomes
+  stable after the multiplier do esaser iesofadding, subtracting, and shifting steps
+ one by one.This means the Verilogcode runs the Booth algorithm properly before
+ the final chip design process (synthesis)
 
- # SynthesizedGate-LevelSchematic:-
+ # Synthesized Gate-Level Schematic:-
  ![IMG-20251030-WA0002](https://github.com/user-attachments/assets/0ea63236-6eb1-4271-acef-476c70c05584)
  ##  Explanation:
  ## This schematic is a simple drawing thatshows how the Boothmultiplier hardware looksafter theVerilogcode is changed intoactual circuitparts tiplierhardware looks after the Verilogcode is changed intoactual circuitparts  duringsynthesis.
- It includes importan0t parts like:-–Registers:Theseholdnumberstemporarily.
+# It includes importan0t parts like:-–Registers:These hold numbers temporarily.
+## Adders:These add numbers during multiplication
+## –Arithmetic shifters: These shift bits left orr right,which is part of them ultiplication process.
+# Timing Report:-
+![WhatsApp Image 2025-10-30 at 17 13 28_31b68896](https://github.com/user-attachments/assets/e5d63a4e-259e-4d8d-9896-38ba4c595f1e)
 
 
-
-
- 
 
                  
 
