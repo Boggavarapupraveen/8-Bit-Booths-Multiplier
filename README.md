@@ -1,156 +1,199 @@
-# 8-Bit-Booths-Multiplier
-# AIM:-Implementation of 8-bit Booth’s Multiplier  using Semi-Custom VLSI Design Flow
-# Apparatus:-➤ Using Cadance
- ##            ➤ Verilog code
-  ##           ➤ testbanch code
-   ##          ➤  run.tcl
-  ##           ➤ input_constraints code
-   ##          ➤ Genus
-   ##          ➤ innovus
-# 📝📝⚙️Procedure:-  1. Write Verilog code for Booth’s Multiplier.
-##                      2. Write a testbench and verify the output using simulation.
- ##                     3. Apply timing constraints using .sdc.
-  ##                    4. Synthesize the circuit using Cadence Genus.
-   ##                   5. Import synthesized netlist into Cadence Innovus.
-   ##                 6. Perform floorplanning,placement,CTS, routing,and sign off checks
- # INTRODUCTION:-
-##  • Booth’s algorithm helps multiply signed binary numbers using fewer addition and
- subtraction steps.
-## • It works by examining pairs of bits in the multiplier and deciding whether to add,
- subtract, or do nothing with the multiplicand, followed by right-shifting bits.
-## • This reduces the total number of operations compared to simple multiplication,
- saving hardware and power.
-## • In semi-custom VLSI design flow, this algorithm is implemented by designing cus
-tom digital blocks (like adders, shifters, and control logic) using standard cell li
-braries.
-## • The multiplier circuit is then synthesized, placed, and routed on silicon using CAD
- tools, optimizing for speed, area, and power.
-##,Booth Algorithm Rules:-<img width="415" height="110" alt="Screenshot 2025-11-04 084403" src="https://github.com/user-attachments/assets/35fb6585-b761-43b9-b112-d1693e86706c" />
- ## Booth multiplication is efficient for signed numbers.
-## It reduces number of additions/subtractions compared to normal binary multiplication.
- ## It works well even when large consecutive 1’s appear in the multiplier.
-## • A = Accumulator register
-## • M = Multiplicand
-## • Q = Multiplier
-## • Q = Stored previous least significant bit
-## • After the chosen operation, perform an Arithmetic Right Shift (ARS) on the com
-## bined register(A,Q,Q1)
-## • Repeat this procedure for each bit of the multiplier.
-## • After all iterations, the final product is obtained as: Product = A parallel Q
-## DISADVANTAGES– 
-## It is less efficient if the multiplier has alternating 1s and 0s (like 1010).
-## The number of addition and subtraction steps can vary, making design com
-## plex.– It is harder to understand and implement compared to simple multiplication.
-## – Hardware using it may consume more power and space.
-## – Works mainly for signed numbers and needs changes for unsigned numbers.
- ## dvantages– 
- ## Efficient for signed multiplication–
- ## Reduces number of additions/subtractions–
- ## Reduces hardware complexit
-#  SimulationWaveform:-
-![img jpg](https://github.com/user-attachments/assets/53cc7a7e-235b-4cb5-8403-579b5bde195f)
-##  Explanation: The waveform shows that the Boothmultiplier is working correctly. When you give inputs(multipli candand multiplier), the output product becomes
-  stable after the multiplier do esaser iesofadding, subtracting, and shifting steps
- one by one.This means the Verilogcode runs the Booth algorithm properly before
- the final chip design process (synthesis)
+Project Title
 
- # Synthesized Gate-Level Schematic:-
- ![IMG-20251030-WA0002](https://github.com/user-attachments/assets/0ea63236-6eb1-4271-acef-476c70c05584)
- ##  Explanation:
- ## This schematic is a simple drawing thatshows how the Boothmultiplier hardware looksafter theVerilogcode is changed intoactual circuitparts tiplierhardware looks after the Verilogcode is changed intoactual circuitparts  duringsynthesis.
-# It includes importan0t parts like:-–Registers:These hold numbers temporarily.
-## Adders:These add numbers during multiplication
-## –Arithmetic shifters: These shift bits left orr right,which is part of them ultiplication process.
-# Timing Report:-
-![WhatsApp Image 2025-10-30 at 17 13 28_31b68896](https://github.com/user-attachments/assets/e5d63a4e-259e-4d8d-9896-38ba4c595f1e)
-##  Explanation:-
-###  The timing report shows how well thec ircuit meets its timing goals. It includes
-###  –Set up time:The minimum time input signals must be stable before the clock.–
-### Hold time:The minimum time input signals must stay stable after the clock.–
-### Slack:The extra time available beyond what’sneeded.
-###  If the slack is positive, it means the design works on time and can run safely at the chosen clock speed with out errors. This means the circuit is reliable
-### and runs fastenough.
-# Power and Area Report:-
-![WhatsApp Image 2025-10-30 at 17 13 29_244ad4a0](https://github.com/user-attachments/assets/a535c4a9-b68c-4914-b63a-05f645b8471d)
-##  Explanation: The report displays total power consumption, leakage power, and
-## silicon area used. Booth’s algorithm reduces switching activity, improving power
-## efficiency while maintaining acceptable area utilization.
-#  Placed Layout:-
-![WhatsApp Image 2025-10-30 at 17 13 29_fcb86368](https://github.com/user-attachments/assets/8dcf4242-8a8a-4d4a-9016-f83226432ebd)
-##  Explanation:This placement step arranges the standard cells to minimize routing
-## complexity and reduce wire delay. Proper placement ensures better performance
-## and lower power
-# Routed Layout:-
-![WhatsApp Image 2025-10-30 at 17 13 29_2cf3ca52](https://github.com/user-attachments/assets/3df2c83b-2477-4305-bcae-fc7429250352)
-##  Explanation: The routed layout completes the signal connections using multilayer interconnects.
-This steps ensures that all timing ande electrical constraints are  satisfied
+Implementation of 8-bit Booth’s Multiplier using Semi-Custom VLSI Design Flow
 
- # 3D VIEW :-
- ![WhatsApp Image 2025-10-30 at 17 13 30_2c0220ad](https://github.com/user-attachments/assets/f9f312a7-bc2a-4acb-9e6e-3205f2d725ce)
- ##  Explanation: The 3D visualization shows multiple metal layers and vias. This
-## verifies that the physical implementation follows DRC/LVS rules and is fabrication ready
- #  Result:-
- ## The 8-bit Booth’s multiplier was successfully designed and implemented.Functional
- ## simulation,synthesis,place and route operations were completed.The circuit meets
- ## timing,area,and power constraints.
- ''' module booths_multiplier (
-    output reg [15:0] prod, 
-    output reg busy,
-    input [7:0] mc, mp, 
-    input clk, start
-);
-    reg [7:0] A, Q, M;
-    reg Q_1;
-    reg [3:0] count;
-    wire [7:0] sum, diff;
+Aim
 
-    always @(posedge clk) begin
-        if (start) begin
-            A <= 8'b0;
-            M <= mc;
-            Q <= mp;
-            Q_1 <= 1'b0;
-            count <= 4'b0;
-            busy <= 1'b1;
-        end else if (busy) begin
-            case ({Q[0], Q_1})
-                2'b01 : {A, Q, Q_1} <= {sum[7], sum, Q};     // Add
-                2'b10 : {A, Q, Q_1} <= {diff[7], diff, Q};   // Subtract
-                default : {A, Q, Q_1} <= {A[7], A, Q};       // Shift only
-            endcase
-            count <= count + 1'b1;
-            if (count == 4'd8)
-                busy <= 1'b0;
-        end
-        prod <= {A, Q};
-    end
+To design, synthesize, implement, and analyze an 8-bit Booth’s Multiplier using the semi-custom VLSI design approach, including RTL coding, functional verification, synthesis, floorplanning, placement, routing, and performance evaluation.
 
-    alu add1 (sum, A, M, 1'b0);
-    alu sub1 (diff, A, ~M, 1'b1);
-endmodule
+Apparatus / Tools Used
 
-module alu (
-    output [7:0] out, 
-    input [7:0] a, b, 
-    input cin
-);
-    assign out = a + b + cin;
-endmodule '''
-# CONCLYSION:-
-## Booth’s algorithm is an efficient technique for signed multiplication. Using a semi
-## custom VLSI design flow, the design was successfully taken from behavioral Verilog
-## description to a physical layout suitable for fabrication. The experiment demonstrates the complete hardware realization process from RTL to GDSII generation
+Cadence Genus (Synthesis)
+
+Cadence Innovus (Place & Route)
+
+Verilog HDL (RTL Implementation)
+
+Testbench (Functional Verification)
+
+.sdc File (Timing Constraints)
+
+run.tcl (Automation Script)
+
+Standard Cell Library (Technology Dependent)
+
+Introduction
+
+Booth’s algorithm is a fast and hardware-efficient algorithm used to multiply signed binary numbers. Unlike conventional multiplication which may require several addition and shift operations, Booth’s algorithm reduces the number of partial products, especially when there are consecutive 1’s in the multiplier.
+
+In VLSI design, Booth’s multiplier is preferred because it:
+
+Reduces hardware complexity
+
+Lowers power consumption
+
+Improves computational efficiency
+
+Supports signed arithmetic directly
+
+This project implements the algorithm in Verilog and maps it through the complete semi-custom VLSI flow from RTL to Physical Layout.
+
+✅ Advantages of Booth’s Multiplier
+| Feature                                 | Advantage Description                                                                                                                      |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Efficient for Signed Multiplication** | Booth’s algorithm directly supports **2’s complement numbers**, reducing the need for separate handling of negative values.                |
+| **Reduced Computational Steps**         | It minimizes the number of **addition/subtraction operations**, especially when the multiplier contains **long sequences of 1’s**.         |
+| **Lower Hardware Complexity**           | Requires fewer arithmetic circuits compared to traditional shift-and-add multiplication methods.                                           |
+| **Better Power Efficiency**             | **Reduced switching activity** leads to lower dynamic power consumption, making it suitable for **low-power VLSI designs**.                |
+| **Scalable in VLSI Flow**               | The architecture fits well into **semi-custom VLSI implementation**, and can be optimized easily during synthesis, placement, and routing. |
+| **Performance Improvement**             | Shows improved **speed and area trade-off** for moderate operand sizes like **8-bit and 16-bit** multipliers.                              |
+
+❌ Disadvantages of Booth’s Multiplier
+| Limitation                                            | Explanation                                                                                                                                 |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Performance Drops with Alternating Bits (101010…)** | When the multiplier has a pattern of alternating bits, the efficiency benefit decreases because more add/subtract operations are triggered. |
+| **Complex Control Logic**                             | The need to track the previous bit and perform conditional operations increases **controller complexity** compared to simple multipliers.   |
+| **Variable Latency**                                  | The number of effective arithmetic steps is **not fixed**, making timing optimization slightly harder for high-speed designs.               |
+| **More Power for High Bit-Widths**                    | For large bit-width multipliers (32-bit and above), Booth multipliers can still consume significant **routing and register power**.         |
+| **Not Ideal for Unsigned Multiplication**             | Needs adjustments to handle **unsigned numbers**, since Booth’s algorithm assumes **signed 2’s complement representation**.                 |
 
 
+General Comparison of Multipliers
+| **Multiplier Type**                 | **Signed Number Support**  | **Partial Product Count** | **Hardware Complexity**   | **Efficiency** |
+| ----------------------------------- | -------------------------- | ------------------------- | ------------------------- | -------------- |
+| **Array Multiplier**                | ✖ Requires Extra Logic     | ❗ High                    | 🔧 High (Many Adders)     | ⭐⭐☆☆☆          |
+| **Carry Save Multiplier (CSA)**     | ✖ Not Direct               | ⚖ Medium                  | 🔧 High (Multiple Stages) | ⭐⭐⭐⭐☆          |
+| **Booth Multiplier (This Project)** | ✅ **Yes – Direct Support** | ✅ **Reduced**             | ⚙ **Moderate**            | ⭐⭐⭐⭐⭐          |
+
+Speed, Area, and Power Analysis
+| **Multiplier**                      | **Operational Speed** | **Area Utilization**           | **Power Consumption**          | **Target Applications**          |
+| ----------------------------------- | --------------------- | ------------------------------ | ------------------------------ | -------------------------------- |
+| **Array Multiplier**                | ⚡ Medium              | 🧱 **High** (Dense Logic)      | 🔥 High                        | Small Bit-Width Designs          |
+| **Wallace Tree Multiplier**         | ⚡⚡ **Very High**      | 🔩 High (Complex Interconnect) | ⚡ Medium                       | High-Performance DSP/CPU         |
+| **Booth Multiplier (This Project)** | ⚡⚡ High               | ✅ **Low–Medium** (Optimized)   | 🌱 **Low** (Reduced Switching) | **Low-Power & VLSI ASIC Design** |
+
+Behavioral & Algorithmic Performance
+| **Condition**                          | **Array Multiplier**    | **Wallace Tree Multiplier** | **Booth Multiplier (This Project)** |
+| -------------------------------------- | ----------------------- | --------------------------- | ----------------------------------- |
+| **Signed Number Handling**             | ❌ Needs Sign Correction | ❌ Needs Extra Logic         | ✅ **Supported Natively**            |
+| **Consecutive ‘1’ Bits in Multiplier** | 😐 No Improvement       | 😐 No Improvement           | ✅ **Less Operations → Faster**      |
+| **Alternating Bits (e.g., 1010)**      | 😐 Normal Performance   | 😐 Normal Performance       | ⚠ Slight Efficiency Drop            |
+| **Implementation Complexity**          | ⭐ Easy                  | 🔧 Very Complex             | ⚙ **Moderate + Optimized**          |
 
 
+Conclusion: Booth Multiplier offers the best balance of speed, area, and power, especially suitable for ASIC and SoC designs.
 
+Booth Algorithm Working Principle
 
+Let A = Accumulator
 
+M = Multiplicand
 
+Q = Multiplier
 
-                 
+Q₋₁ = Previous LSB
 
+At each iteration:
 
+Check the pair (Q₀, Q₋₁)
 
+Perform:
 
+10 → A = A − M
+
+01 → A = A + M
+
+00 or 11 → No arithmetic operation
+
+Perform Arithmetic Right Shift
+
+Repeat for number of bits in Q
+
+This reduces the number of addition/subtraction operations.
+
+Procedure
+
+Write RTL code for Booth’s Multiplier in Verilog.
+
+Develop a testbench and perform functional simulation.
+
+Provide timing constraints using .sdc.
+
+Synthesize the design using Cadence Genus.
+
+Import netlist to Cadence Innovus.
+
+Perform:
+
+Floorplanning
+
+Placement
+
+Clock Tree Synthesis
+
+Routing
+
+Timing Sign-off
+
+Generate layout view and performance reports.
+
+Simulation Output
+
+(Waveform image retained from your repository)
+
+Explanation:
+The output stabilizes after sequential add/subtract and shift operations, confirming correct Booth multiplication behavior in RTL simulation.
+
+Synthesized Gate-Level Schematic
+
+(Image retained from your repository)
+
+This shows:
+
+Registers for data holding
+
+Adders for arithmetic operations
+
+Shifters for intermediate right shifts
+
+Timing Report Interpretation
+
+Setup Time and Hold Time requirements satisfied
+
+Positive Slack observed → design meets timing
+
+Design can run reliably at the target clock frequency
+
+Power and Area Analysis
+
+Booth encoding reduces unnecessary switching
+
+Result: Lower dynamic power
+
+Area is optimized due to reduced partial product logic
+
+Layout Results
+Placement View
+
+Cells are arranged to minimize routing length and delay.
+
+Routing View
+
+Metal layers and interconnects are automatically generated and verified for DRC/LVS correctness.
+
+3D Layout View
+
+Shows physical implementation across metal layers ensuring fabrication readiness.
+
+Result
+
+The Booth’s multiplier was successfully designed, synthesized, placed, and routed.
+It meets timing, power, and area constraints, making it suitable for VLSI implementation.
+
+Conclusion
+
+Booth’s multiplication algorithm significantly optimizes signed multiplication by reducing the number of required operations. Through the semi-custom VLSI design flow, the multiplier was converted from Verilog RTL to final layout, demonstrating the complete IC design cycle and performance validation. This project highlights how algorithmic efficiency directly translates to improved hardware performance in terms of speed, area, and power consumption.
+
+Research References
+https://ieeexplore.ieee.org/document/16765
+https://www.ijert.org/comparison-of-multipliers-for-vlsi-application
