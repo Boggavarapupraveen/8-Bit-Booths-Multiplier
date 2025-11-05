@@ -350,7 +350,7 @@ gui_show
 ### Booth’s multiplication algorithm significantly optimizes signed multiplication by reducing the number of required operations. Through the semi-custom VLSI design flow, the multiplier was converted from Verilog RTL to final layout, demonstrating the complete IC design cycle and performance validation. This project highlights how algorithmic efficiency directly translates to improved hardware performance in terms of speed, area, and power consumption.
 
 # Research References
-# 1.Huang & Ercegovac, "High-Performance Booth Multipliers", IEEE, 1988
-## https://ieeexplore.ieee.org/document/16765
+## 1.Huang & Ercegovac, "High-Performance Booth Multipliers", IEEE, 1988
+### https://ieeexplore.ieee.org/document/16765
 ## 2.Comparison of Multipliers for VLSI Application
 ### https://www.ijert.org/comparison-of-multipliers-for-vlsi-application
